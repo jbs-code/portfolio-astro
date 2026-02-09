@@ -1,0 +1,133 @@
+---
+import Email from "../components/icons/Email.astro";
+import LinkedIn from "../components/icons/LinkedIn.astro";
+import LocationIcon from "../components/icons/LocationIcon.astro";
+import Web from "../components/icons/Web.astro";
+import * as resume from "../data/resume.json";
+import MainLayout from "../layouts/MainLayout.astro";
+
+const { name, label, image, email, phone, url, summary, location } =
+  resume.basics;
+---
+
+<MainLayout title="resume">
+  <!-- <a href="/" class="mt-5 w-fit">Volver</a> -->
+  <div
+    class="resume bg-slate-900 text-slate-300 max-w-4xl mx-auto my-10 col-span-5 p-8 text-sm"
+  >
+    <header>
+      <h1 class="text-4xl font-bold">{resume.basics.name}</h1>
+      <h2 class="text-[16px]">{resume.basics.label}</h2>
+      <section class="flex items-center gap-2.5 justify-center mt-5 mb-5">
+        <article class="basics">
+          <LocationIcon />
+          <span class="font-light text-xs"
+            >{resume.basics.location.city}, {
+              resume.basics.location.region
+            }</span
+          >
+        </article>
+        <article class="basics">
+          <Email />
+          <a href={`mailto:${resume.basics.email}`} class="font-light text-xs"
+            >{resume.basics.email}</a
+          >
+        </article>
+        <article class="basics">
+          <Web />
+          <a
+            href={`${resume.basics.url}`}
+            target="_blank"
+            class="font-light text-xs">{resume.basics.url}</a
+          >
+        </article>
+        <article class="basics">
+          <LinkedIn isResume />
+          <a
+            href={`${resume.basics.profiles.find((p) => p.network === "LinkedIn")?.url}`}
+            target="_blank"
+            class="font-light text-xs"
+            >{
+              resume.basics.profiles.find((p) => p.network === "LinkedIn")?.url
+            }</a
+          >
+        </article>
+      </section>
+    </header>
+    <section>
+      <h2 class="font-semibold text-[16px]">Perfil</h2>
+      <p class="ml-5">{resume.basics.summary}</p>
+    </section>
+    <section class="mt-5 flex flex-col gap-3">
+      <h2 class="font-semibold text-[16px]">Experiencia</h2>
+      {
+        resume.projects.map((proyect) => (
+          <article class="grid grid-cols-3 mb-1">
+            <div class="col-span-1 flex flex-col justify-center pl-10">
+              <h3 class="font-medium">
+                {proyect.name} -{" "}
+                <span class="italic font-light">{proyect.startDate}</span>
+              </h3>
+              <a class="font-thin text-xs" href={proyect.url} target="_blank">
+                {proyect.url}
+              </a>
+              <ul class="flex">
+                {proyect.highlights.map((tool) => (
+                  <li class="ml-2 font-thin text-[10px]">
+                    {"⋆"}{tool}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="col-span-2">
+              <p class="">{proyect.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+    <section class="mt-5 flex flex-col gap-3">
+      <h2 class="font-semibold text-[16px]">Habilidades</h2>
+      <ul
+        class="flex flex-wrap gap-x-10 gap-y-2 justify-center place-items-center"
+      >
+        {
+          resume.skills[0].keywords.map((skill) => (
+            <li class="w-[20%] sm:w-[15%] text-center text-xs font-medium rounded-xl bg-sky-900 text-white print:bg-transparent print:text-slate-900 px-2 py-1">
+              {skill}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section class="mt-5 flex flex-col gap-3">
+      <h2 class="font-semibold text-[16px]">Educación</h2>
+      {
+        resume.education.map((e) => (
+          <article class="flex flex-col">
+            <h3 class="ml-10 font-medium">
+              {"→ "}
+              {e.institution} /{" "}
+              <span class="italic font-light">
+                {e.startDate} {e.endDate && `- ${e.endDate}`}
+              </span>
+            </h3>
+            <h2 class="ml-10 font-medium">{e.area}</h2>
+            {e.score && <p class="ml-13">{e.score}</p>}
+          </article>
+        ))
+      }
+    </section>
+  </div>
+</MainLayout>
+
+<style is:global>
+  @reference "../styles/global.css";
+
+  .resume {
+    @apply print:bg-white print:text-slate-900 print:my-0 print:p-5;
+  }
+  .basics {
+    @apply flex items-center gap-0.5;
+  }
+</style>

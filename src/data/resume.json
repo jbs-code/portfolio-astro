@@ -1,0 +1,163 @@
+{
+  "basics": {
+    "name": "Jaime Barranco Sánchez",
+    "label": "Ingeniero en computación",
+    "image": "",
+    "email": "jaimejb.dev@gmail.com",
+    "phone": "5519026254",
+    "url": "https://johndoe.com",
+    "summary": "Tengo un gran interés en el desarrollo web y me esfuerzo por seguir aprendiendo sobre las tecnología y herramientas relacionadas a esta industria, y de esta manera encontrar las soluciones óptimas a las necesidades que el mundo exige. Entiendo la importancia del trabajo colaborativo y me encantaría pertenecer a un equipo que afronte estas necesidades con mucho entusiasmo.",
+    "location": {
+      "address": "2712 Broadway St",
+      "postalCode": "54440",
+      "city": "Nicolás Romero",
+      "countryCode": "Mx",
+      "region": "Edo.Méx"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "jbs-code",
+        "url": "https://github.com/jbs-code"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "jaimejbas",
+        "url": "https://mx.linkedin.com/in/jaimejbas"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "portafolio",
+      "position": "President",
+      "url": "https://company.com",
+      "startDate": "2021/10",
+      "endDate": "2026",
+      "summary": "He trabajado en diferentes proyectos personales que me han ayudado a afianzar mis conocimientos y mejorar mis habilidades como desarrollador. Puedes ver un poco de mi trabajo en: https://jaimejb.com",
+      "highlights": ["Started the company"]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Organization",
+      "position": "Volunteer",
+      "url": "https://organization.com/",
+      "startDate": "2012-01-01",
+      "endDate": "2013-01-01",
+      "summary": "Description…",
+      "highlights": ["Awarded 'Volunteer of the Month'"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Nacional Autónoma de México",
+      "url": "https://institution.com/",
+      "area": "Ingeniería en computación",
+      "studyType": "Licenciatura",
+      "startDate": "08-2011",
+      "endDate": "06-2016",
+      "score": "",
+      "courses": ["DB1101 - Basic SQL"]
+    },
+    {
+      "institution": "CENEVAL",
+      "url": "https://institution.com/",
+      "area": "Examen General para el Egreso de la Licenciatura en Ingeniería Computacional",
+      "studyType": "Licenciatura",
+      "startDate": "04-2018",
+      "endDate": "",
+      "score": "Presenté el examen general de conocimientos aplicado por el CENEVAL, obteniendo un testimonio de desempeño sobresaliente. De esta forma obtuve el título de ingeniero.",
+      "courses": ["DB1101 - Basic SQL"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Award",
+      "date": "2014-11-01",
+      "awarder": "Company",
+      "summary": "There is no spoon."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Certificate",
+      "date": "2021-11-07",
+      "issuer": "Company",
+      "url": "https://certificate.com"
+    }
+  ],
+  "publications": [
+    {
+      "name": "Publication",
+      "publisher": "Company",
+      "releaseDate": "2014-10-01",
+      "url": "https://publication.com",
+      "summary": "Description…"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Web Development",
+      "level": "Master",
+      "keywords": [
+        "HTML",
+        "CSS",
+        "Tailwind CSS",
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Astro",
+        "Node.js",
+        "SQL",
+        "Git",
+        "PostgreSQL",
+        "Docker"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Wildlife",
+      "keywords": ["Ferrets", "Unicorns"]
+    }
+  ],
+  "references": [
+    {
+      "name": "Jane Doe",
+      "reference": "Reference…"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Portafolio",
+      "startDate": "2026",
+      "endDate": "Actualidad",
+      "description": "He actualizado mi portafolio completamente en Astro. Llevo poco tiempo desarrollando con este framework y quise que mi portafolio fuera de mis primeros proyectos con esta tecnología.",
+      "highlights": ["Astro", "TypeScript", "Tailwind CSS"],
+      "url": "https://project.com/"
+    },
+    {
+      "name": "Cuvi",
+      "startDate": "2024",
+      "endDate": "",
+      "description": "Quise tener una aplicación para poder crear un currículum de una forma sencilla y este fue el resultado. Tiene varios puntos por mejorar, pero ha sido útil para amigos y familiares.",
+      "highlights": ["React", "TypeScript", "CSS", "HTML"],
+      "url": "https://cuvi-jb.netlify.app/"
+    },
+    {
+      "name": "Mouse Escape",
+      "startDate": "2015",
+      "endDate": "",
+      "description": "Este juego es importante para mí porque fue el primer proyecto que hizo que me interesara por la programación, disfruté mucho haciéndolo a pesar del gran desafío que significó.",
+      "highlights": ["Unity", "C#"],
+      "url": "https://jbs-code.github.io/mouse-scape/"
+    }
+  ]
+}

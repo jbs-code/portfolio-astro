@@ -1,0 +1,45 @@
+---
+import Github from "../icons/Github.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import * as resume from "../../data/resume.json";
+---
+
+<aside
+  class="hidden md:flex flex-col gap-5 justify-center sticky max-h-screen top-0 col-span-2 p-5 print:hidden"
+>
+  <header>
+    <h1 class="text-5xl font-bold text-white">Jaime Barranco</h1>
+    <h2 class="text-3xl font-light mt-1">Web Developer</h2>
+  </header>
+  <ul class="flex flex-col gap-2 ml-5">
+    <a href="#perfil" class="nav-link font-thin text-xl">Perfil</a>
+    <a href="#experience" class="nav-link font-thin text-xl">Experiencia</a>
+    <a href="#contact" class="nav-link font-thin text-xl">Contacto</a>
+  </ul>
+  <div class="flex gap-2">
+    <a
+      href={`${resume.basics.profiles.find((p) => p.network === "GitHub")?.url}`}
+      target="_blank"
+    >
+      <Github />
+    </a>
+    <a
+      href={`${resume.basics.profiles.find((p) => p.network === "LinkedIn")?.url}`}
+      target="_blank"
+    >
+      <LinkedIn />
+    </a>
+  </div>
+</aside>
+
+<style>
+  @reference "../../styles/global.css";
+
+  .nav-link {
+    @apply w-fit transition-all ease-in underline-offset-4 hover:underline;
+  }
+
+  .active {
+    @apply text-sky-500 translate-x-6 underline font-bold;
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import ExperienceCard from "./ExperienceCard.astro";
+import Link from "../icons/Link.astro";
+const proyects = await getCollection("proyects");
+
+---
+
+<SectionLayout>
+  <h2 class="md:hidden font-bold text-3xl text-start w-full mb-2">
+    Experiencia
+  </h2>
+  <div
+    id="experience"
+    class="group proyects-container flex flex-col justify-center gap-2"
+  >
+    {
+      proyects
+        .sort((a, b) => Number(a.data.id) - Number(b.data.id))
+        .map((proyect) => <ExperienceCard post={proyect} />)
+    }
+  </div>
+  <div class="resume-link flex mt-10 w-fit">
+    <a href="/resume" class="mr-1 font-semibold transition-all ease-out"
+      >Consulta mi CV</a
+    >
+    <Link />
+  </div>
+</SectionLayout>
+
+<style is:global>
+  @reference '../../styles/global.css'
+  .proyects-container:hover article {
+    opacity: 0.5;
+  }
+
+  .resume-link:hover svg {
+    @apply fill-white scale-125;
+  }
+
+  .resume-link:hover a {
+    @apply text-sky-500 underline;
+  }
+</style>

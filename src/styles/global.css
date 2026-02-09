@@ -1,0 +1,26 @@
+@import "tailwindcss";
+/* 
+h1{
+    @apply text-3xl;
+} */
+
+@font-face {
+  font-family: Encode_Sans;
+  /* font-style: normal; */
+  /* font-weight: 200 700; */
+  /* font-display: swap; */
+  src: url("../assets/fonts/Encode_Sans/EncodeSans-VariableFont_wdth,wght.woff2")
+    format("woff2");
+}
+
+@theme {
+  --font-encode_sans: "Encode_Sans", sans-serif;
+}
+
+body {
+  @apply bg-radial from-slate-950 from-10% to-sky-950 font-encode_sans text-slate-300 text-[16px];
+}
+
+html {
+  scroll-behavior: smooth;
+}

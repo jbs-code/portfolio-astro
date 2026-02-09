@@ -1,0 +1,154 @@
+---
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import Github from "../icons/Github.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import * as resume from "../../data/resume.json";
+---
+
+<SectionLayout>
+  <h2 class="md:hidden font-bold text-3xl text-start w-full mb-2">Contacto</h2>
+  <div
+    id="contact"
+    class="flex flex-wrap justify-center gap-1 h-3/4 md:items-center md:h-full"
+  >
+    <form class="relative flex flex-col w-lg gap-2 p-1.5">
+      <input
+        class="border-2 border-slate-300 rounded-md p-2 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500"
+        type="email"
+        name="email"
+        placeholder="Email"
+      />
+      <input
+        class="border-2 border-slate-300 rounded-md p-2 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500"
+        type="text"
+        name="subject"
+        placeholder="Asunto"
+      />
+      <textarea
+        name="message"
+        class="border-2 border-slate-300 rounded-md p-2 h-24 resize-none focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500"
+        placeholder="Hola, soy..."></textarea>
+      <button
+        class="bg-sky-600 hover:bg-sky-800 transition-colors ease-in rounded-md p-2 cursor-pointer font-bold text-shadow-xs text-shadow-slate-600 disabled:bg-slate-500 disabled:pointer-events-none"
+        type="submit">Enviar</button
+      >
+      <p
+        id="info-message"
+        class="-z-10 opacity-0 absolute bottom-0 left-0 w-full font-semibold border-2 border-sky-500 text-center p-2 rounded-md transition-all ease-in-out"
+      >
+        Error message
+      </p>
+    </form>
+    <footer
+      class="md:hidden flex flex-col justify-center h-fit items-center gap-2"
+    >
+      <div class="flex gap-2">
+        <a
+          href={`${resume.basics.profiles.find((p) => p.network === "GitHub")?.url}`}
+          target="_blank"
+        >
+          <Github />
+        </a>
+        <a
+          href={`${resume.basics.profiles.find((p) => p.network === "LinkedIn")?.url}`}
+          target="_blank"
+        >
+          <LinkedIn />
+        </a>
+      </div>
+      <p class="font-thin text-xs">También puedes contactarme a través de mis redes.</p>
+    </footer>
+  </div>
+</SectionLayout>
+<script>
+  import { isInputError } from "astro:actions";
+  import { actions } from "astro:actions";
+
+  const form = document.querySelector("form") as HTMLFormElement;
+  const infoMessage = document.querySelector(
+    "#info-message",
+  ) as HTMLParagraphElement;
+  const inputs = form.querySelectorAll(":scope > input,textarea") as NodeListOf<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
+  const submitButton = form.querySelector("button") as HTMLButtonElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    submitButton.setAttribute("disabled", "true");
+    submitButton.textContent = "Enviando...";
+    let message = "";
+
+    const contactMessage = new FormData(form);
+    const { data, error } = await actions.mailer(contactMessage);
+
+    if (isInputError(error)) {
+      if (error.fields.email) {
+        message = "Email válido es requerido";
+        form.querySelector("input[name=email]")?.classList.add("input-error");
+      } else if (error.fields.subject) {
+        message = "El asunto es requerido";
+        form.querySelector("input[name=subject]")?.classList.add("input-error");
+      } else if (error.fields.message) {
+        message = "El mensaje es requerido";
+        form
+          .querySelector("textarea[name=message]")
+          ?.classList.add("input-error");
+      }
+
+      infoMessage.textContent = message;
+      infoMessage.classList.add("isError");
+      submitButton.removeAttribute("disabled");
+      submitButton.textContent = "Enviar";
+      return;
+    }
+
+    if (data?.status === "ok") {
+      infoMessage.textContent = data?.response || "Mensaje enviado!";
+      infoMessage.classList.add("isOk");
+      Array.from(inputs).forEach((input) => {
+        input.value = "";
+      });
+    } else {
+      infoMessage.textContent =
+        data?.response || "Error al enviar email, inténtalo más tarde.";
+      infoMessage.classList.add("isError");
+    }
+
+    setTimeout(() => {
+      infoMessage.classList.remove("isOk");
+      infoMessage.classList.remove("isError");
+    }, 5000);
+
+    submitButton.removeAttribute("disabled");
+    submitButton.textContent = "Enviar";
+  });
+
+  Array.from(inputs).forEach((input) => {
+    input.addEventListener("input", () => {
+      infoMessage.classList.remove("isError");
+      input.classList.remove("input-error");
+    });
+    if (input.type !== "textarea") {
+      input.addEventListener("keydown", (e) => {
+        const ke = e as KeyboardEvent;
+        if (ke.key === "Enter") ke.preventDefault();
+      });
+    }
+  });
+</script>
+<style>
+  @reference '../../styles/global.css';
+
+  .input-error {
+    @apply border-red-500 focus:ring-0;
+  }
+
+  .isError {
+    @apply opacity-100 translate-y-full text-red-500;
+  }
+
+  .isOk {
+    @apply opacity-100 translate-y-full text-green-500;
+  }
+</style>

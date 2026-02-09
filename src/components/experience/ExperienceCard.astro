@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import Link from "../icons/Link.astro";
+
+interface Props {
+  post: CollectionEntry<"proyects">;
+}
+
+const { post } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+---
+
+<a href={data.urlSite ? data.urlSite : data.urlCode} target="_blank">
+  <article
+    class="proyect group-hover:opacity-50 hover:opacity-100 hover:bg-slate-500/20 p-3 text-sm rounded-2xl transition-all ease-in-out"
+  >
+    <header class="mb-2 flex gap-1 items-center">
+      <h1 class="text-2xl font-bold">{data.name}</h1>
+      <Link />
+    </header>
+    <div class="flex flex-col xl:flex-row gap-3 items-center justify-center">
+      <Image src={data.image} alt={data.name} class="rounded-md w-xs xl:w-50" />
+      <Content />
+    </div>
+    <footer class="mt-2">
+      <ul class="flex gap-2 justify-end">
+        {
+          data.tools.map((tool) => (
+            <li class="px-3 py-1 rounded-2xl bg-slate-700 text-white text-xs font-semibold">
+              {tool}
+            </li>
+          ))
+        }
+      </ul>
+    </footer>
+  </article>
+</a>
+
+<style is:global>
+  @reference '../../styles/global.css';
+
+  .proyect:hover {
+    @apply scale-105;
+  }
+
+  .proyect:hover svg {
+    @apply fill-white scale-125;
+  }
+
+  .proyect:hover h1 {
+    @apply text-sky-500;
+  }
+
+  .proyect:hover li {
+    @apply bg-sky-500 text-shadow-2xs text-shadow-slate-500;
+  }
+</style>

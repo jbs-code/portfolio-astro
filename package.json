@@ -9,6 +9,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.15"
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/netlify": "^6.6.4",
+    "@tailwindcss/vite": "^4.1.18",
+    "add": "^2.0.6",
+    "astro": "^5.16.15",
+    "mdx": "^0.3.1",
+    "nodemailer": "^8.0.0",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^7.0.9"
   }
 }
