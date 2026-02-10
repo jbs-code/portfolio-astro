@@ -29,8 +29,8 @@ const { Content } = await render(post);
       <ul class="flex gap-2 justify-end">
         {
           data.tools.map((tool) => (
-            <li class="px-3 py-1 rounded-2xl bg-slate-700 text-white text-xs font-semibold">
-              {tool}
+            <li class="flex items-center justify-center text-center px-3 py-1 rounded-2xl bg-slate-700 text-white text-xs font-semibold">
+              <span class="text-nowrap">{tool}</span>
             </li>
           ))
         }

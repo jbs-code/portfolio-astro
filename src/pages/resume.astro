@@ -18,7 +18,7 @@ const { name, label, image, email, phone, url, summary, location } =
     <header>
       <h1 class="text-4xl font-bold">{resume.basics.name}</h1>
       <h2 class="text-[16px]">{resume.basics.label}</h2>
-      <section class="flex items-center gap-2.5 justify-center mt-5 mb-5">
+      <section class="flex flex-col sm:flex-row items-start sm:items-center justify-center gap-2.5 mt-5 mb-5">
         <article class="basics">
           <LocationIcon />
           <span class="font-light text-xs"
@@ -63,7 +63,7 @@ const { name, label, image, email, phone, url, summary, location } =
       {
         resume.projects.map((proyect) => (
           <article class="grid grid-cols-3 mb-1">
-            <div class="col-span-1 flex flex-col justify-center pl-10">
+            <div class="col-span-1 flex flex-col justify-center pl-5 sm:pl-10">
               <h3 class="font-medium">
                 {proyect.name} -{" "}
                 <span class="italic font-light">{proyect.startDate}</span>
@@ -71,15 +71,15 @@ const { name, label, image, email, phone, url, summary, location } =
               <a class="font-thin text-xs" href={proyect.url} target="_blank">
                 {proyect.url}
               </a>
-              <ul class="flex">
+              <ul class="flex flex-wrap">
                 {proyect.highlights.map((tool) => (
                   <li class="ml-2 font-thin text-[10px]">
-                    {"⋆"}{tool}
+                    <span>{"⋆"}{tool}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div class="col-span-2">
+            <div class="col-span-2 pl-5">
               <p class="">{proyect.description}</p>
             </div>
           </article>
@@ -89,12 +89,12 @@ const { name, label, image, email, phone, url, summary, location } =
     <section class="mt-5 flex flex-col gap-3">
       <h2 class="font-semibold text-[16px]">Habilidades</h2>
       <ul
-        class="flex flex-wrap gap-x-10 gap-y-2 justify-center place-items-center"
+        class="flex flex-wrap gap-x-5 sm:gap-x-10 gap-y-2 justify-center place-items-center"
       >
         {
           resume.skills[0].keywords.map((skill) => (
-            <li class="w-[20%] sm:w-[15%] text-center text-xs font-medium rounded-xl bg-sky-900 text-white print:bg-transparent print:text-slate-900 px-2 py-1">
-              {skill}
+            <li class="flex items-center justify-center w-[25%] sm:w-[15%] font-medium rounded-xl bg-sky-900 text-white print:bg-transparent print:text-slate-900 px-2 py-1">
+              <span class="text-nowrap text-xs ">{skill}</span>
             </li>
           ))
         }
@@ -128,6 +128,6 @@ const { name, label, image, email, phone, url, summary, location } =
     @apply print:bg-white print:text-slate-900 print:my-0 print:p-5;
   }
   .basics {
-    @apply flex items-center gap-0.5;
+    @apply flex items-center gap-0.5 text-nowrap;
   }
 </style>
