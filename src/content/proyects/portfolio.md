@@ -1,8 +1,8 @@
 ---
 id: "00"
 name: "Portfolio"
-urlSite: "https://codepen.io/jbs-code"
-urlCode: ""
+urlSite: "https://jaimejb-portfolio.netlify.app"
+urlCode: "https://github.com/jbs-code/portfolio-astro"
 image: "../../assets/imgs/portfolio.png"        
 tools: ["Astro", "TypeScript", "HTML", "Tailwind CSS"]
 ---
