@@ -141,7 +141,7 @@
       "endDate": "Actualidad",
       "description": "He actualizado mi portafolio completamente en Astro. Llevo poco tiempo desarrollando con este framework y quise que mi portafolio fuera de mis primeros proyectos con esta tecnología.",
       "highlights": ["Astro", "TypeScript", "Tailwind CSS"],
-      "url": "https://project.com/"
+      "url": "https://jaimejb-portfolio.netlify.app/"
     },
     {
       "name": "Cuvi",
