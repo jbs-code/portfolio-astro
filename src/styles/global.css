@@ -18,7 +18,7 @@ h1{
 }
 
 body {
-  @apply bg-radial from-slate-950 from-10% to-sky-950 font-encode_sans text-slate-300 text-[16px];
+  @apply bg-radial from-slate-950 from-10% to-sky-950 font-encode_sans text-slate-300/70 text-[16px];
 }
 
 html {
